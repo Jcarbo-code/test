@@ -3,6 +3,7 @@
 require_once "models/CategoryModel.php";
 require_once "views/CategoryView.php";
 require_once "helpers/authHelper.php";
+require_once "models/ProductModel.php";
 
 class CategoryController
 {
@@ -10,12 +11,14 @@ class CategoryController
     private $model;
     private $view;
     private $authHelper;
+    private $productModel;
 
     function __construct()
     {
         $this->authHelper = new AuthHelper();
         $this->model = new CategoryModel();
         $this->view = new CategoryView();
+        $this->productModel = new ProductModel();
     }
 
     function getCategorys()
@@ -71,9 +74,14 @@ class CategoryController
             $isAdmin = $this->authHelper->isAdmin();
             if ($isAdmin) {
                 $category = $this->model->getCategory($id);
-                if (isset($category)) {
-                    $this->model->deleteCategory($id);
-                    header("Location: " . BASE_URL . "category");
+                $productos = $this->productModel->getProductsbyCategory($id);
+                if (!$productos) {
+                    if (isset($category)) {
+                        $this->model->deleteCategory($id);
+                        header("Location: " . BASE_URL . "category");
+                    }
+                } else {
+                    $this->view->showError('la categoria contiene platos asociados');
                 }
             }
         } else {

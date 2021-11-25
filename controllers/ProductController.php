@@ -5,6 +5,7 @@ require_once "views/productView.php";
 require_once "helpers/authHelper.php";
 require_once "models/categoryModel.php";
 require_once "views/CategoryView.php";
+require_once "models/CommentModel.php";
 
 class ProductController
 {
@@ -12,6 +13,7 @@ class ProductController
     private $view;
     private $authHelper;
     private $categoryModel;
+    private $commentModel;
 
     public function __construct()
     {
@@ -20,6 +22,7 @@ class ProductController
         $this->view = new ProductView();
         $this->CategoryView = new CategoryView();
         $this->categoryModel = new CategoryModel();
+        $this->commentModel = new CommentModel();
     }
 
     public function getProducts()
@@ -39,7 +42,7 @@ class ProductController
         $product = $this->model->getProducts($offset, $pageSize);
         $counts = $this->model->countProducts();
         $categoryModel = new CategoryModel();
-        $this->view->showProducts($product, $categoryModel->getCategorys(), $counts->cantidad / $pageSize);
+        $this->view->showProducts($product, $categoryModel->getCategorys(), $counts->cantidad / $pageSize - 1);
     }
 
     public function getProduct($id)
@@ -94,9 +97,16 @@ class ProductController
         $product = $this->model->getProduct($id);
         if ($product) {
             $isAdmin = $this->authHelper->isAdmin();
-            if ($isAdmin) {
-                $this->model->deleteProduct($id);
-                header("Location: " . BASE_URL);
+            $comments = $this->commentModel->getCommentsByproduct($id, 'fecha_creacion', 'DESC');
+            if (!$comments) {
+                if ($isAdmin) {
+                    $this->model->deleteProduct($id);
+                    header("Location: " . BASE_URL);
+                } else {
+                    header("Location: " . BASE_URL );
+                }
+            } else {
+                $this->view->showError('el producto tiene comentarios');
             }
         } else {
             $this->view->showError('el producto no existe');
