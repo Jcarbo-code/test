@@ -8,9 +8,8 @@
         <input class="form-control" name="nombre" type="text" placeholder="Nombre" value="{$nombre}">
         <label class="form-label">Email</label>
         <input class="form-control" name="mail" type="email" placeholder="Email" value="{$mail}">
-        <label class="form-label">Rol</label>
+        <label class="form-label">Elegi el rol</label>
         <select class="form-select" name="rol" type="text" placeholder="Rol">
-            <option value="">Elegi el rol</option>
             {if $rol == 'admin'}
                 <option value="admin" selected>Admin</option>
                 <option value="no-admin">No-Admin</option>

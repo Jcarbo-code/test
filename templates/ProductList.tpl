@@ -18,6 +18,7 @@
                                     href="product/eliminar/{$product->id_product}">Eliminar</a>
                             </button>
                         {/if}
+                        {* {$product->id_product} *}
                     </p>
                 </li>
             {/foreach}

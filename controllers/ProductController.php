@@ -38,11 +38,12 @@ class ProductController
         if ($page == 1)
             $offset = 0;
         else
-            $offset = ($pageSize * $page);
+            $offset = ($pageSize * ($page-1));
         $product = $this->model->getProducts($offset, $pageSize);
-        $counts = $this->model->countProducts();
+        
+        $cantidadTotal = $this->model->countProducts();
         $categoryModel = new CategoryModel();
-        $this->view->showProducts($product, $categoryModel->getCategorys(), $counts->cantidad / $pageSize - 1);
+        $this->view->showProducts($product, $categoryModel->getCategorys(), ceil($cantidadTotal->cantidad / $pageSize));
     }
 
     public function getProduct($id)
@@ -63,7 +64,7 @@ class ProductController
             $isAdmin = $this->authHelper->isAdmin();
             if (
                 isset($_POST['nombre']) && !empty($_POST['nombre']) && isset($_POST['descripcion']) && !empty($_POST['descripcion'])
-                && isset($_POST['precio']) && !empty($_POST['nombre']) /* && isset($_POST['imagen']) && !empty($_POST['imagen']) */
+                && isset($_POST['precio']) && !empty($_POST['precio']) /* && isset($_POST['imagen']) && !empty($_POST['imagen']) */
             ) {
                 if ($isAdmin) {
                     $nombre = $_POST['nombre'];
@@ -103,7 +104,7 @@ class ProductController
                     $this->model->deleteProduct($id);
                     header("Location: " . BASE_URL);
                 } else {
-                    header("Location: " . BASE_URL );
+                    header("Location: " . BASE_URL);
                 }
             } else {
                 $this->view->showError('el producto tiene comentarios');

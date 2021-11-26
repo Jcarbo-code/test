@@ -19,7 +19,6 @@
             <label class="form-label">¿Cuantos puntos le das?</label>
 
             <select class="form-select form-select-sm" aria-label=".form-select-sm example" name='puntaje'>
-                <option selected>Puntos</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>

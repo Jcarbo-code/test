@@ -11,7 +11,7 @@ class ProductModel
 
     function getProducts($offset, $limit)
     {
-        $query = $this->db->prepare('SELECT l.*, e.categoria, e.local FROM product l JOIN category e ON l.id_category = e.id_category limit ?, ?');
+        $query = $this->db->prepare('SELECT l.*, e.categoria, e.local FROM product l JOIN category e ON l.id_category = e.id_category ORDER BY l.id_product limit ?, ?');
         $query->bindParam(2, $limit, PDO::PARAM_INT);
         $query->bindParam(1, $offset, PDO::PARAM_INT);
         $query->execute();

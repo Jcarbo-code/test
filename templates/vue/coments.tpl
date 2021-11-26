@@ -17,6 +17,7 @@
                 {{comentario.nombre}}, {{comentario.mail}} -
                 {{comentario.puntuacion}} -
                 {{comentario.comentario}}
+                {{comentario.fecha_creacion}}
 
                 <button class="btn" v-if="isAdmin" v-on:click.prevent="eliminarComentario(comentario.id_comentario)"> <a
                         class="btn btn-danger">Eliminar</a>

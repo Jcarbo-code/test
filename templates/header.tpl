@@ -24,8 +24,8 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item active"><a class="nav-link"  href="product">product</a></li>
-                <li class="nav-item active"><a class="nav-link" href="category">category</a></li>
+                <li class="nav-item active"><a class="nav-link"  href="product">Productos</a></li>
+                <li class="nav-item active"><a class="nav-link" href="category">Categorias</a></li>
                 {if !isset($isLogged) || !$isLogged}
                     <li class="nav-item active"><a class="nav-link" href="login">Login</a></li>
                     <li class="nav-item active"><a class="nav-link" href="register">Registrate</a></li>
@@ -36,6 +36,7 @@
                 {if isset($isLogged) && $isLogged}
                     <li class="nav-item active"><a class="nav-link" href="logout">Logout</a></li>
                 {/if}
+                <li class="nav-item active"><a class="nav-link" href="home">Buscar producto</a></li>
             </ul>
         </div>
     </nav>
