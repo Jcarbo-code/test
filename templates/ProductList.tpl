@@ -18,7 +18,6 @@
                                     href="product/eliminar/{$product->id_product}">Eliminar</a>
                             </button>
                         {/if}
-                        {* {$product->id_product} *}
                     </p>
                 </li>
             {/foreach}
@@ -41,24 +40,22 @@
     {if $isLogged && $isAdmin}
         <div class="container" style="width: 60rem; margin-bottom: 5%;">
             <h2 class="text-primary m-3">Agregar producto</h2>
-            <form class="mb-3" action="product/agregar" method="POST" style="width: 30rem">
+            <form class="mb-3" action="product/agregar" method="POST" style="width: 30rem" enctype="multipart/form-data">
                 <label class="form-label">nombre</label>
                 <input class="form-control" name="nombre" placeholder="Nombre">
                 <label class="form-label">descripcion</label>
                 <input class="form-control" name="descripcion" placeholder="descripcion">
                 <label class="form-label">precio</label>
                 <input class="form-control" name="precio" placeholder="precio">
-                {* <label class="form-label">imagen</label>
-                <input class="form-control" name="image" type="image" placeholder="imagen"> *}
+                <label class="form-label">imagen</label>
+                <input class="form-control" name="image" type="file" placeholder="imagen"> 
                 <label class="form-label" for="id_category">Categoria</label>
                 <select class="form-select" name="id_category">
                     {foreach from=$categorys item=$category}
                         <option value="{$category->id_category}">{$category->categoria}, {$category->local} </option>
                     {/foreach}
                 </select>
-
                 <button class="btn btn-primary m-2" type="submit">Agregar</button>
-
             </form>
         {/if}
     </div>

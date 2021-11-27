@@ -41,7 +41,7 @@ class ProductView
         $this->smarty->assign('nombre', $Product->nombre);
         $this->smarty->assign('descripcion', $Product->descripcion);
         $this->smarty->assign('precio', $Product->precio);
-        $this->smarty->assign('image', $Product->image);
+        $this->smarty->assign('imagen', $Product->imagen);
         $this->smarty->display('templates/editProduct.tpl');
     }
 
@@ -52,19 +52,20 @@ class ProductView
         $this->smarty->display('templates/ProductsByCategory.tpl');
     }
 
-    function showError($error = ""){  
+    function showError($error = "")
+    {
         $this->smarty->assign('title', 'Lista de productos');
-        $this->smarty->assign('error', $error);      
+        $this->smarty->assign('error', $error);
         $this->smarty->display('templates/ProductList.tpl');
     }
 
     function showHome()
     {
-        $this ->smarty->display('templates/home.tpl');
+        $this->smarty->display('templates/home.tpl');
     }
 
     function showNosotros()
     {
-        $this ->smarty->display('templates/nosotros.tpl');
+        $this->smarty->display('templates/nosotros.tpl');
     }
 }

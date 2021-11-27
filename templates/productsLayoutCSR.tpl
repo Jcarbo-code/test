@@ -5,7 +5,8 @@
 
     <div>
         <h2>{$product->nombre} - {$product->categoria}</h2> 
-        <p> ${$product->precio}. {$product->descripcion}  {$product->image}</p>
+        <p> ${$product->precio}. {$product->descripcion}  </p>
+        <img src="{$product->imagen}" alt="img">
     </div>
 
     <div id="comments" data-isLogged="{$isLogged}" data-isAdmin="{$isAdmin}">

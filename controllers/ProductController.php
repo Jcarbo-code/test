@@ -38,9 +38,9 @@ class ProductController
         if ($page == 1)
             $offset = 0;
         else
-            $offset = ($pageSize * ($page-1));
+            $offset = ($pageSize * ($page - 1));
         $product = $this->model->getProducts($offset, $pageSize);
-        
+
         $cantidadTotal = $this->model->countProducts();
         $categoryModel = new CategoryModel();
         $this->view->showProducts($product, $categoryModel->getCategorys(), ceil($cantidadTotal->cantidad / $pageSize));
@@ -64,17 +64,24 @@ class ProductController
             $isAdmin = $this->authHelper->isAdmin();
             if (
                 isset($_POST['nombre']) && !empty($_POST['nombre']) && isset($_POST['descripcion']) && !empty($_POST['descripcion'])
-                && isset($_POST['precio']) && !empty($_POST['precio']) /* && isset($_POST['imagen']) && !empty($_POST['imagen']) */
+                && isset($_POST['precio']) && !empty($_POST['precio'])
             ) {
                 if ($isAdmin) {
+                    if (
+                        $_FILES['newImagen']['type'] == "image/jpg"  ||
+                        $_FILES['newImagen']['type'] == "image/jpeg" ||
+                        $_FILES['newImagen']['type'] == "image/png"
+                    ) {
+                        $imagen = $_FILES['newImagen'];
+                    }
+                    $imagenVieja = $product->imagen;
                     $nombre = $_POST['nombre'];
                     $descripcion = $_POST['descripcion'];
                     $precio = $_POST['precio'];
-                    /* $imagen = $_POST['imagen']; */
-                    $this->model->editProduct($id, $nombre, $descripcion, $precio);
+                    $this->model->editProduct($id, $nombre, $descripcion, $precio, $imagen, $imagenVieja);
                 }
             }
-            header("Location: " . BASE_URL);
+            header("Location: " . BASE_URL . "product/editar/". $id);
         } else {
             $this->view->showError('el producto no existe');
         }
@@ -86,6 +93,7 @@ class ProductController
         $product = $this->model->getProduct($id);
         if ($product) {
             $product = $this->model->getProduct($id);
+
             $this->view->editProduct($product);
         } else {
             $this->view->showError('el producto no existe');
@@ -137,15 +145,21 @@ class ProductController
         $isAdmin = $this->authHelper->isAdmin();
         if (
             isset($_POST['nombre']) && !empty($_POST['nombre']) && isset($_POST['descripcion']) && !empty($_POST['descripcion'])
-            && isset($_POST['precio']) && !empty($_POST['precio']) /* && isset($_POST['imagen']) && !empty($_POST['imagen']) */
+            && isset($_POST['precio']) && !empty($_POST['precio'])
         ) {
             if ($isAdmin) {
+                if (
+                    $_FILES['image']['type'] == "image/jpg"  ||
+                    $_FILES['image']['type'] == "image/jpeg" ||
+                    $_FILES['image']['type'] == "image/png"
+                ) {
+                    $imagen = $_FILES['image'];
+                }
                 $nombre = $_POST['nombre'];
                 $descripcion = $_POST['descripcion'];
                 $precio = $_POST['precio'];
-                /* $imagen = $_POST['imagen']; */
                 $id_category = $_POST['id_category'];
-                $this->model->addproduct($nombre, $descripcion, $precio, $id_category);
+                $this->model->addproduct($nombre, $descripcion, $precio, $imagen, $id_category);
                 header("Location: " . BASE_URL);
             }
         } else {
