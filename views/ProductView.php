@@ -57,4 +57,14 @@ class ProductView
         $this->smarty->assign('error', $error);      
         $this->smarty->display('templates/ProductList.tpl');
     }
+
+    function showHome()
+    {
+        $this ->smarty->display('templates/home.tpl');
+    }
+
+    function showNosotros()
+    {
+        $this ->smarty->display('templates/nosotros.tpl');
+    }
 }

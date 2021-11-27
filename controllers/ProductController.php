@@ -152,4 +152,14 @@ class ProductController
             header("Location: " . BASE_URL);
         }
     }
+
+    public function showHome()
+    {
+        $this->view->showHome();
+    }
+
+    public function showNosotros()
+    {
+        $this->view->showNosotros();
+    }
 }

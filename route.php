@@ -17,7 +17,7 @@ $categoryController = new CategoryController();
 $userController = new UserController();
 switch ($params[0]) {
     case 'home':
-        $productController->getProducts();
+        $productController->showHome();
         break;
     case 'product':
         if (isset($params[1]))
@@ -86,6 +86,9 @@ switch ($params[0]) {
         break;
     case 'register':
         $userController->showRegister();
+        break;
+    case 'nosotros':
+        $productController->showNosotros();
         break;
     case 'usuarios':
         if (isset($params[1]))
