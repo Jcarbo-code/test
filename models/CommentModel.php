@@ -26,7 +26,13 @@ class CommentModel
         return $comments;
     }
 
-
+    function getproductRating($idproduct, $rating);
+    {
+        $query = $this->db->prepare("SELECT * FROM comentarios AS a INNER JOIN usuarios AS b ON a.id_usuario = b.id_usuario WHERE a.id_product = ? AND a.puntuacion = ?");
+        $query->execute([$idProduct, $rating]);
+        $comments = $query->fetchAll(PDO::FETCH_OBJ);
+        return $comments;
+    }
 
     function addCommentProduct($comentario, $puntuacion, $id_usuario, $id_product)
     {

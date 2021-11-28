@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2021 at 07:53 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- Generation Time: Nov 28, 2021 at 11:01 PM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -49,7 +49,8 @@ INSERT INTO `category` (`id_category`, `categoria`, `local`, `fecha_menu`, `desc
 (7, 'Tartas', 'Tres arroyos y claromeco', '2019-11-22', 'Todo tipo de tartas, ahora tenemos veganas'),
 (8, 'Pizzas', 'Tres arroyos y claromeco', '2012-02-14', 'Todo tipo de pizzas, ahora tenemos veganas'),
 (9, 'bebidas', 'Tres arroyos', '2012-06-22', 'Todo tipo de gaseosas y los mejores vinos'),
-(53, 'tragos', 'Tres arroyos', '2021-12-03', '                    se añadio la barra de tragos');
+(54, 'prueba2', 'copetonas y claromeco', '2021-11-17', '                            nuevos tragos realizados en copetonas y claromeco\r\n    '),
+(55, 'prueba', 'tresa', '2021-11-02', 'sdvhnavadjavdinjadvnijadvinjadvjvad');
 
 -- --------------------------------------------------------
 
@@ -71,14 +72,10 @@ CREATE TABLE `comentarios` (
 --
 
 INSERT INTO `comentarios` (`id_comentario`, `comentario`, `puntuacion`, `id_product`, `id_usuario`, `fecha_creacion`) VALUES
-(3, 'Test', 4, 3, 1, '2021-11-22 10:28:32'),
-(14, 'test', 3, 3, 7, '2021-11-23 20:40:03'),
-(20, 'que rico', 4, 10, 8, '2021-11-25 13:02:16'),
-(21, 'solo para gente que le guste picante', 2, 53, 8, '2021-11-25 14:02:14'),
-(22, 'ESTABA MUY BUENO', 4, 32, 8, '2021-11-25 15:24:17'),
-(23, 'ideal para veganos =)', 5, 32, 8, '2021-11-25 15:24:43'),
-(24, 'usualmente no lo como, pero lo recomiendo', 3, 32, 8, '2021-11-25 15:25:15'),
-(25, 'abundante', 4, 48, 8, '2021-11-25 15:50:32');
+(30, 'abundante', 4, 4, 10, '2021-11-09 02:20:49'),
+(31, 'ESTABA MUY BUENO', 5, 4, 8, '2021-11-26 02:21:13'),
+(32, 'no me gust0', 1, 4, 9, '2021-11-15 02:21:53'),
+(33, 'que rico', 3, 4, 9, '2021-11-26 02:22:03');
 
 -- --------------------------------------------------------
 
@@ -91,7 +88,7 @@ CREATE TABLE `product` (
   `nombre` varchar(64) NOT NULL,
   `descripcion` varchar(128) DEFAULT NULL,
   `precio` float NOT NULL,
-  `image` varchar(50) DEFAULT NULL,
+  `imagen` varchar(255) DEFAULT NULL,
   `id_category` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -99,11 +96,9 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id_product`, `nombre`, `descripcion`, `precio`, `image`, `id_category`) VALUES
-(1, '1/2 Pollo', NULL, 500, '', 1),
-(2, 'Vacio', NULL, 2000, '', 1),
+INSERT INTO `product` (`id_product`, `nombre`, `descripcion`, `precio`, `imagen`, `id_category`) VALUES
 (3, 'Colita de cuadril', NULL, 2000, '', 1),
-(4, 'Bondiola de cerdo', 'una bondiola de los cerdos criados en el campo la granja', 1800, NULL, 1),
+(4, 'Bondiola de cerdo', 'una bondiola de los cerdos criados en el campo la granja', 1800, '*aca esta la imagen*', 1),
 (5, 'Chorizo', NULL, 200, '', 1),
 (6, 'Morcilla', NULL, 200, '', 1),
 (7, 'Filet de Brotola', NULL, 350, '', 1),
@@ -126,7 +121,7 @@ INSERT INTO `product` (`id_product`, `nombre`, `descripcion`, `precio`, `image`,
 (26, 'Matambre de pollo', NULL, 1700, '', 4),
 (27, 'Papas Fritas Chicas', 'Para 3 personas', 250, '', 5),
 (28, 'Papas Fritas Chicas', 'Para 3 personas', 250, '', 5),
-(29, 'Papas Fritas Grandes', 'Para 4 o 5 personas', 300, '', 5),
+(29, 'Papas Fritas Grandes', 'Para 4 o 5 personas', 300, 'img/61a1f12e42aab7.22272451.png', 5),
 (30, 'Papas al horno Chicas', 'Para 3 personas', 250, '', 5),
 (31, 'Papas al horno Grandes', 'Para 4 o 5 personas', 350, '', 5),
 (32, 'Verduras grilladas Chicas', 'Tomate, cbebolla, calabaza, zapallito y berejena', 250, '', 5),
@@ -142,10 +137,8 @@ INSERT INTO `product` (`id_product`, `nombre`, `descripcion`, `precio`, `image`,
 (46, 'Milanesa Carne Super', 'Tomate, lechuga, jamon, queso y mayonesa', 360, '', 6),
 (47, 'Lomito', 'Tomate, lechuga y mayonesa', 380, '', 6),
 (48, 'Pollo a las brasas', 'Tomate, lechuga y mayonesa', 300, '', 6),
-(50, 'Alucar', 'asdweq', 540, '', 52),
-(51, 'blackwhite', 'rinde 2 personas', 540, '', 52),
-(53, 'mastorr', 'asnijwmok fsoas ', 235346, NULL, 12),
-(54, 'mastorr', 'rinde 3 personas', 235346, NULL, 12);
+(59, 'blackwhite', 'asfasd', 235346, 'img/61a1efdecde9b1.94788276.png', 5),
+(60, '12323ed23rd', 'rinde23 ', 2345, 'img/61a1f016d6b4d7.08290080.png', 55);
 
 -- --------------------------------------------------------
 
@@ -166,10 +159,10 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre`, `mail`, `clave`, `rol`) VALUES
-(1, 'admin', 'admin@hotmail.com', '$2a$12$PwKMSpX281sqINDPztJ0I.Jpp8awR3v2UKp/jn85PpC6TSfpMW82C', 'admin'),
 (4, 'joelcarbo', 'jcarbo@hotmail.com', '$2y$10$SqTngyuqGvRB7z8KGk2vOO1vzRBnW54rLE0rdQZ6I0t8qZVeSgYve', 'admin'),
 (8, 'carbonetti', 'joel_carbo@hotmail.com', '$2y$10$mKia4PC771Q4W5lfHBjGour9cOaMalFST4h6o439G/K91Mzw9jG4m', 'admin'),
-(9, 'usuario', 'Usuario@gmail.com', '$2y$10$HdZloqn30.8A6NsuxYTYtuA3.Z8g42nx5coPGSZMz/ub7KqjsJ.ya', 'no-admin');
+(9, 'usuario', 'Usuario@gmail.com', '$2y$10$HdZloqn30.8A6NsuxYTYtuA3.Z8g42nx5coPGSZMz/ub7KqjsJ.ya', 'no-admin'),
+(10, 'pepe', 'pepe@gmail.com', '$2y$10$YwdNxt5sgQM7U9kemNjEDuSdUpMN55g52.PmpQhiABp8Y7csJz9NS', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -210,25 +203,42 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD CONSTRAINT `fk_comentarios_product` FOREIGN KEY (`id_product`) REFERENCES `product` (`id_product`),
+  ADD CONSTRAINT `fk_comentarios_usuarios` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`);
+
+--
+-- Constraints for table `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `fk_product_category` FOREIGN KEY (`id_category`) REFERENCES `category` (`id_category`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

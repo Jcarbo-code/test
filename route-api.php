@@ -11,5 +11,6 @@ $router = new Router();
 $router->addRoute('product/detalle/:ID', 'GET', 'commentAPIController', 'getCommentsByProduct');
 $router->addRoute('product/detalle/:ID/comments', 'POST', 'commentAPIController', 'addCommentProduct');
 $router->addRoute('product/detalle/:ID/comments/:ID', 'DELETE', 'commentAPIController', 'deleteComment');
+$router->addRoute('product/detalle/:ID/:rating', 'GET', 'commentAPIController', 'getRatingCommentsByProduct');
 // rutea
 $router->route($_GET["resource"], $_SERVER['REQUEST_METHOD']);

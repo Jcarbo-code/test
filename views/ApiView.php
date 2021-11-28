@@ -8,8 +8,6 @@ class ApiView{
         echo json_encode($data);
     }
 
-
-    //Se podrian mejorar ls cod de respuesta 
     private function _requestStatus($code){
         $status = array(
         200 => "OK",

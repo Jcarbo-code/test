@@ -21,7 +21,18 @@ class CommentAPIController
         $this->modelproduct = new productModel();
     }
 
-
+    public function getRatingCommentsByProduct($params = null)
+    {
+        if (isset($params[':ID']) && isset($params[':rating'])) {
+            $idproduct = $params[":ID"];
+            $rating = $params[':rating'];
+            $comments = $this->model->getproductRating($idproduct, $rating);
+            return $this->view->response($comments, 200);
+        } else {
+            return $this->view->response("error de parametros", 500);
+        }
+    }
+    
     public function getCommentsByproduct($params = null)
     {
         $idproduct = $params[":ID"];
