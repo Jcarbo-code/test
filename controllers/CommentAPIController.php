@@ -26,7 +26,7 @@ class CommentAPIController
         if (isset($params[':ID']) && isset($params[':rating'])) {
             $idproduct = $params[":ID"];
             $rating = $params[':rating'];
-            $comments = $this->model->getproductRating($idproduct, $rating);
+            $comments = $this->model->getproductRating($idproduct, $rating, 'fecha_creacion', 'ASC');
             return $this->view->response($comments, 200);
         } else {
             return $this->view->response("error de parametros", 500);

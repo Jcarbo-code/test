@@ -8,9 +8,8 @@
     <ul>
         {foreach from=$products item=$product}
         <li>
-            <p> {$product->nombre} {$product->descripcion}, {$product->precio} - {$product->image}
+            <p> {$product->nombre} {$product->descripcion}, {$product->precio}
             </p>
-
         </li>
         {/foreach}
     </ul>

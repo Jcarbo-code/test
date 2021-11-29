@@ -4,6 +4,7 @@ require_once "models/userModel.php";
 require_once "helpers/authHelper.php";
 require_once "views/registerView.php";
 require_once "views/userView.php";
+require_once "models/CommentModel.php";
 
 class UserController
 {
@@ -13,6 +14,7 @@ class UserController
     private $authHelper;
     private $registerview;
     private $userview;
+    private $commentModel;
 
 
     public function __construct()
@@ -22,6 +24,7 @@ class UserController
         $this->authHelper = new AuthHelper();
         $this->registerview = new RegisterView();
         $this->userview = new UserView();
+        $this->commentModel = new CommentModel();
     }
 
     function logout()
@@ -148,11 +151,16 @@ class UserController
         $user = $this->model->getUserById($id_usuario);
         if ($user) {
             $isAdmin = $this->authHelper->isAdmin();
-            if ($isAdmin) {
-                $this->model->deleteUser($id_usuario);
-                header("Location: " . BASE_URL . "usuarios");
+            $comments = $this->commentModel->getCommentsByUser($id_usuario, 'fecha_creacion', 'DESC');
+            if (!$comments) {
+                if ($isAdmin) {
+                    $this->model->deleteUser($id_usuario);
+                    header("Location: " . BASE_URL . "usuarios");
+                } else {
+                    header("Location: " . BASE_URL . "login");
+                }
             } else {
-                header("Location: " . BASE_URL . "login");
+                $this->userview->showError('el usuario tiene comentarios');
             }
         } else {
             $this->userview->showError('el usuario no existe');

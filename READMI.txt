@@ -3,7 +3,7 @@ USUARIOS:
 jcarbo@hotmail.com  (admin)
 1234
 
-joel_carbo@hotmail.com   (admin)
+joel_carbo@hotmail.com   (no - admin)
 1234
 
 Usuario@gmail.com  (no - admin)
@@ -11,3 +11,6 @@ Usuario@gmail.com  (no - admin)
 
 pepe@gmail.com (no - admin)
 123
+
+administrador@algo ( admin)
+1234

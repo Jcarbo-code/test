@@ -47,7 +47,7 @@ class ProductView
 
     public function showProductsByCategory($products)
     {
-        $this->smarty->assign('title', 'Lista de product');
+        $this->smarty->assign('title', 'Lista de productos');
         $this->smarty->assign('products', $products);
         $this->smarty->display('templates/ProductsByCategory.tpl');
     }

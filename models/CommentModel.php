@@ -26,9 +26,18 @@ class CommentModel
         return $comments;
     }
 
-    function getproductRating($idproduct, $rating);
+    function getCommentsByUser($id_usuario, $orderby, $order)
     {
-        $query = $this->db->prepare("SELECT * FROM comentarios AS a INNER JOIN usuarios AS b ON a.id_usuario = b.id_usuario WHERE a.id_product = ? AND a.puntuacion = ?");
+        $query = $this->db->prepare("SELECT * FROM comentarios AS a INNER JOIN usuarios AS b ON a.id_usuario = b.id_usuario WHERE a.id_usuario = ?
+            order by $orderby $order");
+        $query->execute([$id_usuario]);
+        $comments = $query->fetchAll(PDO::FETCH_OBJ);
+        return $comments;
+    }
+
+    function getproductRating($idProduct, $rating, $orderby, $order)
+    {
+        $query = $this->db->prepare("SELECT * FROM comentarios AS a INNER JOIN usuarios AS b ON a.id_usuario = b.id_usuario WHERE a.id_product = ? AND a.puntuacion = ? order by $orderby $order");
         $query->execute([$idProduct, $rating]);
         $comments = $query->fetchAll(PDO::FETCH_OBJ);
         return $comments;

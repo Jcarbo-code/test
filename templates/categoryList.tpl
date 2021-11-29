@@ -9,7 +9,7 @@
             {foreach from=$categorys item=$category}
                 <li class="list-group-item">
                     <p> {$category->categoria}, {$category->local} ({$category->fecha_menu}), {$category->descripcion}- &nbsp;
-                        <a class="btn btn-link btn-sm" href="category/product/{$category->id_category}">Ver product</a>
+                        <a class="btn btn-link btn-sm" href="category/product/{$category->id_category}">Ver productos</a>
                         {if $isLogged && $isAdmin}
                             <button class="btn"> <a class="btn btn-danger" href='category/editar/{$category->id_category}'>Editar
                                 </a></button>
